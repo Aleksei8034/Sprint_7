@@ -1,0 +1,1 @@
+{'login': 'evdokimmorozov', 'firstName': 'Платон', 'password': '@5C9VOG(ty'}
