@@ -18,5 +18,6 @@ class TestOrderCreate:
         data.update(color)
         data = json.dumps(data)
         response = requests.post(f'{Urls.SCOOTER_URL}{Endpoints.create_order}', headers=headers, data=data)
-        assert response.status_code == 201
+        with allure.step("оформление заказа разный цвет"):
+         assert response.status_code == 201
         assert "track" in response.text
