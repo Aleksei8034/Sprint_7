@@ -1,0 +1,25 @@
+import json
+import allure
+import pytest
+import requests
+from helps import DataOrder
+from endpoints import Endpoints
+from urls import Urls
+
+
+class TestOrderCreate:
+
+    @allure.title('Оформляем заказа с разным набором цветов')
+    @allure.description('Отправляем запрос на создание заказа с поочередным добавлением различных цветов и проверяем ответ')
+    @pytest.mark.parametrize('color', [{"color": ["BLACK"]}, {"color": ["GREY"]}, {"color": ["BLACK", "GRAY"]}, {"color": [""]}])
+    def test_create_order_success(self, color):
+       headers = {"Content-type": "application/json"}
+       with allure.step("подготовка данных"):
+        data = DataOrder.data
+        data.update(color)
+       with allure.step("преоброзование давнных"): 
+        data = json.dumps(data)
+       with allure.step("оформление заказ"):
+        response = requests.post(f'{Urls.SCOOTER_URL}{Endpoints.create_order}', headers=headers, data=data)
+        assert response.status_code == 201
+        assert "track" in response.text

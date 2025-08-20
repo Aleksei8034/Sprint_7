@@ -1,0 +1,15 @@
+import allure
+import requests
+from endpoints import Endpoints
+from urls import Urls
+
+
+class TestOrdersList:
+
+    @allure.title('Получения списка заказов')
+    @allure.description('Получаем списки заказов и проверяем ответ')
+    def test_list_orders_success(self):
+        with allure.step("получение списка заказов"):
+         response = requests.get(f'{Urls.SCOOTER_URL}{Endpoints.get_orders_list}')
+        assert response.status_code == 200
+        assert "track" in response.text
