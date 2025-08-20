@@ -1,1 +1,0 @@
-[32mINFO    [0m conftest:conftest.py:14 {'login': 'angelina_1971', 'firstName': 'Арефий', 'password': 'xRgC2WBrU$'}

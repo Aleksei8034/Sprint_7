@@ -1,6 +1,8 @@
 import pytest
-
-from helps import Courier
+import requests
+from endpoints import Endpoints
+from urls import Urls
+from helps import Courier, DataCreateCourier
 
 import logging
 
@@ -24,3 +26,15 @@ def courier():
     yield courier_create
     Courier().courier_subsequent_deletion(courier_login["id"])
 
+
+@pytest.fixture
+def generate_courier_data():
+    creation_courier_body = DataCreateCourier.generating_fake_valid_data_to_create_courier()
+    login_courier_body = {'login': creation_courier_body['login'], 'password': creation_courier_body['password']}
+
+    yield [creation_courier_body, login_courier_body]
+
+    login_courier_response = requests.post(f'{Urls.SCOOTER_URL}{Endpoints.login_courier}', json=login_courier_body)
+    courier_id = login_courier_response.json().get("id")
+
+    requests.delete(f'{Urls.SCOOTER_URL}{Endpoints.delete_courier}{courier_id}')

@@ -1,0 +1,1 @@
+INFO:conftest:{'login': 'lev1979', 'firstName': 'Савватий', 'password': '^KDPWaCpA3'}

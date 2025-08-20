@@ -1,6 +1,7 @@
 from faker import Faker
 import requests
-
+import random
+import string
 from endpoints import Endpoints
 from urls import Urls
 
@@ -101,3 +102,4 @@ class DataOrder:
         "deliveryDate": "2025-08-11",
         "comment": "Погнали",
     }
+

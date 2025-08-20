@@ -1,1 +1,0 @@
-INFO:conftest:{'login': 'angelina_1971', 'firstName': 'Арефий', 'password': 'xRgC2WBrU$'}
